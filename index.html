@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Github-Issue-Tracker || Login</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="./assets/fav.jpg" type="image/x-icon">
+    <!-- fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet">
+    <!-- style file -->
+     <link rel="stylesheet" href="style.css">
+    <!-- daisy ui & tailwind -->
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+</head>
+<body class="bg-[#f8fafc] min-h-screen flex items-center justify-center">
+
+    <section class="w-full max-w-lg px-4 mx-auto">
+        <div class="bg-white shadow-xl rounded-xl p-8 text-center">
+            <div class="flex justify-center mb-4">
+                <div class="flex items-center justify-center">
+                    <img src="./assets/github-logo.png" alt="github-logo">
+                </div>
+            </div>
+            <h2 class="text-2xl font-bold text-gray-800">
+                GitHub Issues Tracker
+            </h2>
+            <p class="text-gray-500 mb-6">
+                Sign in to manage your issues
+            </p>
+            <div class="text-left mb-4">
+                <label class="text-sm font-medium">Username</label>
+                <input type="text" placeholder="Enter Username"
+                class="input input-bordered w-full mt-1">
+                <p class="text-xs text-indigo-600 mt-1">Default: admin</p>
+            </div>
+            <div class="text-left mb-4">
+                <label class="text-sm font-medium">Password</label>
+                <input type="password" placeholder="Enter Password"
+                class="input input-bordered w-full mt-1">
+                <p class="text-xs text-indigo-600 mt-1">Default: admin123</p>
+            </div>
+            <button class="btn w-full text-white border-none bg-[#4a00ff]">
+                Sign In
+            </button>
+
+            <div class="divider text-sm">OR</div>
+            <p class="text-gray-500 mb-2">Demo Credentials:</p>
+            <div class="bg-gray-100 rounded-lg p-4 text-sm">
+                <p><b>Username:</b> admin</p>
+                <p><b>Password:</b> admin123</p>
+            </div>
+        </div>
+    </section>
+
+</body>
+</html>
