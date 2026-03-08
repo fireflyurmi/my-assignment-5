@@ -73,3 +73,24 @@ function renderCards(issues) {
         container.appendChild(card);
     });
 }
+
+function switchTab(tabType) {
+    currentActiveTab = tabType;
+    
+    const tabs = ['all', 'open', 'closed'];
+    tabs.forEach(tab => {
+        const btn = document.getElementById(`btn-${tab}`);
+        if(btn) {
+            btn.classList.toggle('bg-indigo-600', tab === tabType);
+            btn.classList.toggle('text-white', tab === tabType);
+            btn.classList.toggle('bg-white', tab !== tabType);
+            btn.classList.toggle('text-gray-600', tab !== tabType);
+        }
+    });
+
+    let filtered = allIssues;
+    if (tabType === 'open') filtered = allIssues.filter(i => i.status.toLowerCase() === 'open');
+    else if (tabType === 'closed') filtered = allIssues.filter(i => i.status.toLowerCase() === 'closed');
+    
+    renderCards(filtered);
+}
