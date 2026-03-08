@@ -15,6 +15,8 @@
     <!-- daisy ui & tailwind -->
     <link href="https://cdn.jsdelivr.net/npm/daisyui@5" rel="stylesheet" type="text/css" />
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- sweet alert -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="bg-[#f8fafc] min-h-screen flex items-center justify-center">
 
@@ -33,17 +35,17 @@
             </p>
             <div class="text-left mb-4">
                 <label class="text-sm font-medium">Username</label>
-                <input type="text" placeholder="Enter Username"
+                <input id="login-user-name" type="text" placeholder="Enter Username"
                 class="input input-bordered w-full mt-1">
                 <p class="text-xs text-indigo-600 mt-1">Default: admin</p>
             </div>
             <div class="text-left mb-4">
                 <label class="text-sm font-medium">Password</label>
-                <input type="password" placeholder="Enter Password"
+                <input id="login-password" type="password" placeholder="Enter Password"
                 class="input input-bordered w-full mt-1">
                 <p class="text-xs text-indigo-600 mt-1">Default: admin123</p>
             </div>
-            <button class="btn w-full text-white border-none bg-[#4a00ff]">
+            <button id="login-btn" class="btn w-full text-white border-none bg-[#4a00ff]">
                 Sign In
             </button>
 
@@ -56,5 +58,8 @@
         </div>
     </section>
 
+
+
+    <script src="scripts/login.js"></script>
 </body>
 </html>
