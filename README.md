@@ -52,4 +52,4 @@ In arrow function :
 
 5️⃣ What are template literals?
 
-Ans :- template literals is a modern way of writing "string" in javascript, where variable can be dynamically used. Within backtick(``) string and variable can be easily used.
+Ans :- template literals is a modern way of writing "string" in javascript, where variable can be dynamically used by using(${variableName}). Within backtick(``) string and variable can be easily used.
