@@ -1,7 +1,6 @@
 let allIssues = [];
 let currentActiveTab = 'all';
 
-// Configuration for Priority Styles
 const styleMap = {
     high: { badge: "bg-red-50 text-red-400 border-red-100" },
     medium: { badge: "bg-orange-50 text-orange-400 border-orange-100" },
@@ -16,12 +15,13 @@ const labelStyleMap = {
     default: "bg-gray-50 text-gray-500 border-gray-100"
 };
 
+
 function loadIssues(query = '') {
     const spinner = document.getElementById('loading-spinner');
-    spinner.classList.remove('hidden');
+    if (spinner) spinner.classList.remove('hidden');
     
     let url = query 
-        ? `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${query}` 
+        ? `https://phi-lab-server.vercel.app/api/v1/lab/issues/search?q=${encodeURIComponent(query)}` 
         : "https://phi-lab-server.vercel.app/api/v1/lab/issues";
 
     fetch(url)
@@ -30,13 +30,17 @@ function loadIssues(query = '') {
             allIssues = data.data; 
             switchTab(currentActiveTab); 
         })
-        .finally(() => spinner.classList.add('hidden'));
+        .finally(() => {
+            if (spinner) spinner.classList.add('hidden');
+        });
 }
 
 function renderCards(issues) {
-    const container = document.getElementById('card-container');
-    document.getElementById('issue-count').innerText = `${issues.length} Issues`;
-    container.innerHTML = '';
+    const wrapper = document.getElementById('cards-wrapper');
+    const countElement = document.getElementById('issue-count');
+    if (countElement) countElement.innerText = `${issues.length} Issues`;
+    
+    wrapper.innerHTML = '';
 
     issues.forEach(issue => {
         const isClosed = issue.status.toLowerCase() === 'closed';
@@ -49,7 +53,7 @@ function renderCards(issues) {
         card.onclick = () => showModal(issue.id);
 
         card.innerHTML = `
-            <div class="p-4 flex-grow">
+            <div class="p-4 grow">
                 <div class="flex justify-between items-start mb-3">
                     <img src="${statusIcon}" class="w-5 h-5">
                     <span class="px-3 py-0.5 rounded-full text-[10px] font-bold uppercase ${priorityBadge} border">
@@ -70,27 +74,88 @@ function renderCards(issues) {
                 <p>${new Date(issue.createdAt).toLocaleDateString()}</p>
             </div>
         `;
-        container.appendChild(card);
+        wrapper.appendChild(card);
     });
 }
 
 function switchTab(tabType) {
-    currentActiveTab = tabType;
-    
-    const tabs = ['all', 'open', 'closed'];
-    tabs.forEach(tab => {
-        const btn = document.getElementById(`btn-${tab}`);
-        if(btn) {
-            btn.classList.toggle('bg-indigo-600', tab === tabType);
-            btn.classList.toggle('text-white', tab === tabType);
-            btn.classList.toggle('bg-white', tab !== tabType);
-            btn.classList.toggle('text-gray-600', tab !== tabType);
-        }
-    });
+    const spinner = document.getElementById('loading-spinner');
+    const wrapper = document.getElementById('cards-wrapper');
 
-    let filtered = allIssues;
-    if (tabType === 'open') filtered = allIssues.filter(i => i.status.toLowerCase() === 'open');
-    else if (tabType === 'closed') filtered = allIssues.filter(i => i.status.toLowerCase() === 'closed');
-    
-    renderCards(filtered);
+    // show spinner
+    if (spinner) spinner.classList.remove('hidden');
+
+    // hide cards 
+    if (wrapper) wrapper.style.display = "none";
+
+    setTimeout(() => {
+        currentActiveTab = tabType;
+
+        const tabs = ['all', 'open', 'closed'];
+        tabs.forEach(tab => {
+            const btn = document.getElementById(`btn-${tab}`);
+            if(btn) {
+                btn.classList.toggle('bg-indigo-600', tab === tabType);
+                btn.classList.toggle('text-white', tab === tabType);
+                btn.classList.toggle('bg-white', tab !== tabType);
+                btn.classList.toggle('text-gray-600', tab !== tabType);
+            }
+        });
+
+        let filtered = allIssues;
+
+        if (tabType === 'open')
+            filtered = allIssues.filter(i => i.status.toLowerCase() === 'open');
+        else if (tabType === 'closed')
+            filtered = allIssues.filter(i => i.status.toLowerCase() === 'closed');
+
+        renderCards(filtered);
+
+        // hide spinner
+        if (spinner) spinner.classList.add('hidden');
+
+        if (wrapper) wrapper.style.display = "contents";
+    }, 300);
 }
+
+function showModal(id) {
+    const modal = document.getElementById('issue_modal');
+    fetch(`https://phi-lab-server.vercel.app/api/v1/lab/issue/${id}`)
+        .then(res => res.json())
+        .then(res => {
+            const data = res.data;
+            document.getElementById('modal-title').innerText = data.title;
+            const statusBadge = document.getElementById('modal-status-badge');
+            
+            const currentStatus = data.status.toLowerCase();
+            statusBadge.innerText = currentStatus.charAt(0).toUpperCase() + currentStatus.slice(1);
+            statusBadge.className = currentStatus === 'open' 
+                ? "bg-emerald-500 text-white px-3 py-1 rounded-full text-xs font-bold" 
+                : "bg-purple-500 text-white px-3 py-1 rounded-full text-xs font-bold";
+
+            document.getElementById('modal-meta').innerText = ` • Opened by ${data.author} • ${new Date(data.createdAt).toLocaleDateString()}`;
+            document.getElementById('modal-desc').innerText = data.description;
+            document.getElementById('modal-assignee').innerText = data.assignee || "Unassigned";
+
+            const labelContainer = document.getElementById('modal-labels');
+            labelContainer.innerHTML = data.labels.map(l => {
+                const style = labelStyleMap[l.toLowerCase()] || labelStyleMap.default;
+                return `<span class="px-2 py-0.5 rounded text-[10px] font-bold border uppercase ${style}">${l}</span>`;
+            }).join('');
+            
+            const priorityBadge = document.getElementById('modal-priority-badge');
+            priorityBadge.innerText = data.priority.toUpperCase();
+            const pColors = { high: "bg-red-500", medium: "bg-orange-400", low: "bg-gray-400" };
+            priorityBadge.className = `px-3 py-1 rounded-md text-[10px] font-bold text-white ${pColors[data.priority.toLowerCase()] || 'bg-gray-400'}`;
+
+            modal.showModal();
+        });
+}
+
+
+// for searching issues
+document.getElementById('search-input')?.addEventListener('input', (e) => {
+    loadIssues(e.target.value.trim());
+});
+
+loadIssues();
