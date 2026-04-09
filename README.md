@@ -1,55 +1,42 @@
-<!-- No.1 question & answer -->
+# 🛠️ GitHub Issue Tracker - Advanced Management System
 
-1️⃣ What is the difference between var, let, and const?
+A robust and secure issue tracking application designed to streamline project management. This tool features a dedicated login system, real-time issue status tracking, and a dynamic user dashboard.
 
-Ans :- (var) is function-scoped. It can be re-declared and re-assigned.(Hoisted).
+### 🔗 Live Demo
+[Explore GitHub Issue Tracker](https://fireflyurmi.github.io/github-issue-tracker/)
 
-(let) is safer than (var). It's block-scoped. It can be re-assigned but can not be re-declared.
+---
 
-(const) is also block-scoped. It can not be re-assigned and re-declared.
+### 📸 Project Previews
+<p align="center">
+  <img src="./preview1.png" width="45%" alt="Login Page" />
+  <img src="./preview2.png" width="45%" alt="Dashboard" />
+</p>
+<p align="center"><i>(Login View & Main Dashboard View)</i></p>
 
+---
 
-<!-- No.2 question & answer -->
+### 📝 Project Overview
+This project focuses on handling complex frontend logic, such as user authentication and dynamic data rendering. It provides a clean interface where issues are categorized by status with visual indicators for better clarity.
 
-2️⃣ What is the spread operator (...)?
+### ✨ Key Features
+- **Secure Authentication:** Functional login system for authorized access.
+- **Dynamic Issue Cards:** Status-based UI elements (e.g., border colors based on issue priority).
+- **Responsive Dashboard:** Fully optimized for all screen sizes using Tailwind CSS.
+- **Efficient Data Handling:** Clean JavaScript logic for managing issue lists and updates.
+- **Modern UI:** Minimalist and professional look using custom Tailwind configurations.
 
-Ans :- spread operator is generally used for merge & copy (array) and also merge & copy (object). It spread out an (array). For example :- 
+### 🛠️ Technology Stack
+- **HTML5:** For core application structure.
+- **Tailwind CSS:** For custom, utility-first styling and responsiveness.
+- **JavaScript (ES6+):** For authentication logic, routing, and dynamic DOM updates.
 
-const numbers = [1, 2, 3];
-console.log(...numbers);
+### 📦 Major Components
+- `login-function`: Handles user credentials and access.
+- `issue-tracker-dashboard`: Main interface for viewing and managing issues.
+- `status-indicator`: Visual logic for differentiating issue states.
 
-The output will be : 1 2 3
-
-
-<!-- No.3 question & answer -->
-
-3️⃣ What is the difference between map(), filter(), and forEach()?
-
-Ans :- These 3 methods are generally used for (looping on array). map() is worked on each element of an array and return a new array.
-
-filter() creates a new array by selecting some elements from an array according to the condition.
-
-forEach() just loops over each element, but not return new array.
-
-
-<!-- No.4 question & answer -->
-
-4️⃣ What is an arrow function?
-
-Ans :- In javascript arrow function is a short and modern way to write a function. For example :-
-
-In normal function :  
-            function add(a, b) {
-            return a + b;
-            }
-
-In arrow function :
-            const add = (a, b) => a + b;
-            console.log(add(2,3));  the output will be 5. 
-
-
-<!-- No.5 question & answer -->
-
-5️⃣ What are template literals?
-
-Ans :- template literals is a modern way of writing "string" in javascript, where variable can be dynamically used by using(${variableName}). Within backtick(``) string and variable can be easily used.
+### 🚀 How to Run Locally
+1. **Clone the repository:**
+   ```bash
+   git clone [https://github.com/fireflyurmi/github-issue-tracker.git](https://github.com/fireflyurmi/github-issue-tracker.git)
