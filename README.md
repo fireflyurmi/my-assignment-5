@@ -1,9 +1,17 @@
-# 🛠️ GitHub Issue Tracker - Advanced Management System
+<div align="center">
 
-A robust and secure issue tracking application designed to streamline project management. This tool features a dedicated login system, real-time issue status tracking, and a dynamic user dashboard.
+# 🛠️ IssueTracker Pro
+### *Efficient Tracking. Seamless Management. Faster Resolution.*
 
-### 🔗 Live Demo
-[Explore GitHub Issue Tracker](https://fireflyurmi.github.io/github-issue-tracker/)
+[![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)]()
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-38B2AC?style=for-the-badge&logo=tailwind-css&logoColor=white)]()
+[![Auth System](https://img.shields.io/badge/Login_System-Secure-red?style=for-the-badge&logo=json-web-tokens&logoColor=white)]()
+[![Frontend Logic](https://img.shields.io/badge/Frontend-Logic-blue?style=for-the-badge&logo=codeforces&logoColor=white)]()
+[![GitHub API](https://img.shields.io/badge/GitHub-API_Ready-black?style=for-the-badge&logo=github&logoColor=white)]()
+
+*A comprehensive GitHub Issue Tracker system with secure authentication, dynamic status-based UI, and real-time issue management. Built with a focus on clean logic and responsive dashboard design.*
+
+</div>
 
 ---
 
