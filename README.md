@@ -1,5 +1,6 @@
 <div align="center">
-
+<img src="https://cdn-icons-png.flaticon.com/512/3208/3208726.png" width="100" />
+  
 # 🛠️ GitHub Issue Tracker
 ### *Efficient Tracking. Seamless Management. Faster Resolution.*
 
